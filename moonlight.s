@@ -20,8 +20,9 @@ reborn:		st r1, 00
 			live %100
 			zjmp %:reborn
 			fork %:reborn
+			live %2
 
-l1:			live %4902343
+l1:			live %2
 			st r1, 00
 			st r1, 1024
 			st r1, -1024
@@ -29,13 +30,15 @@ l1:			live %4902343
 			ld %-1, r10
 			ld %-789, r4
 			lfork %:l1
-			live %-50
+			live %100
 			ld %-100, r10
 			ld %-50, r4
+			live %2
 
-live:		live %2343
-			sti r1, %:l0, %1100
+live:		live %2
+			sti r1, %:l0, %2000
 			fork %:l1
+			live %2
 
 moondust:	st r3, -100
 			st r3, -90
@@ -80,5 +83,7 @@ moondust:	st r3, -100
 			st r3, 190
 			st r3, 0
 			st r3, 200
-			add r1, r10, r3 
+			add r1, r10, r3
 			zjmp %:moondust
+			fork %:moondust
+			live %2
